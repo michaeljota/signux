@@ -1,0 +1,28 @@
+{
+  "name": "signux",
+  "version": "1.0.0",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./operators": {
+      "import": "./dist/operators/index.js",
+      "types": "./dist/operators/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "bun build src/index.ts --outdir=dist && bun build src/operators/index.ts --outdir=dist/operators && tsc --declaration --emitDeclarationOnly --outDir dist",
+    "prepublishOnly": "bun run build"
+  }
+}
