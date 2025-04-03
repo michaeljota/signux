@@ -5,6 +5,6 @@ export type { Event } from "./event";
 export { computed } from "./computed";
 export type { ComputedState } from "./computed";
 export { effect } from "./effect";
-export { asyncState } from "./async-state";
-export type { AsyncState } from "./async-state";
+export { stateAsync } from "./stateAsync";
+export type { StateAsync } from "./stateAsync";
 export type { EventEmitter, Subscribable } from "./types";

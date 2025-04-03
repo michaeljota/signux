@@ -1,15 +1,15 @@
 import { describe, it, expect, mock } from "bun:test";
 import { event } from "../event";
-import { handlePromise } from "./handlePromise";
+import { mapAsync } from "./mapAsync";
 
-describe("handlePromise", () => {
+describe("mapAsync", () => {
   it("should emit loading state then success state when promise resolves", async () => {
     const fakeFetcher = (x: number) =>
       new Promise<number>((resolve) => {
         setTimeout(() => resolve(x * 2), 50);
       });
     const source = event<number>();
-    const asyncStream = source.pipe(handlePromise(fakeFetcher));
+    const asyncStream = source.pipe(mapAsync(fakeFetcher));
     const callback = mock();
 
     asyncStream.subscribe(callback);
@@ -29,7 +29,7 @@ describe("handlePromise", () => {
         setTimeout(() => reject(err), 50);
       });
     const source = event<number>();
-    const asyncStream = source.pipe(handlePromise(fakeFetcher));
+    const asyncStream = source.pipe(mapAsync(fakeFetcher));
     const callback = mock();
 
     asyncStream.subscribe(callback);
@@ -55,7 +55,7 @@ describe("handlePromise", () => {
       }
     };
     const source = event<number>();
-    const asyncStream = source.pipe(handlePromise(fakeFetcher));
+    const asyncStream = source.pipe(mapAsync(fakeFetcher));
     const callback = mock();
 
     asyncStream.subscribe(callback);
