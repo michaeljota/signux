@@ -56,9 +56,8 @@ function createBuilder<T>(
       return builder;
     },
     create(): State<T> {
-      const { getter, subscribe, update, set } = createStateHandler(
-        baseGetter(),
-      );
+      const { getter, subscribe, update, set } =
+        createStateHandler(baseGetter());
 
       baseSubscribe(set);
 

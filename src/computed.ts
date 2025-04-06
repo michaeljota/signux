@@ -1,6 +1,11 @@
 import { autoTrackCallback } from "./auto-tracker";
 import { createStateHandler, getResultEvent } from "./handlers";
-import type { Pipeable, PipeOperatorsDefault, StateGetter, Subscribable } from "./types";
+import type {
+  Pipeable,
+  PipeOperatorsDefault,
+  StateGetter,
+  Subscribable,
+} from "./types";
 
 export interface ComputedState<T>
   extends StateGetter<T>,

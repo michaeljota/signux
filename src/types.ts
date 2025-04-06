@@ -8,11 +8,12 @@ export interface Subscribable<T> {
 }
 
 export type PipeOperatorsDefault = Array<OperatorFn<any, any>>;
-export type PipeResult<S extends Pipeable<T>, T> = S extends ComputedState<T>
-  ? ComputedState<T>
-  : S extends State<T>
-  ? ComputedState<T>
-  : NoEmitterEvent<T>;
+export type PipeResult<S extends Pipeable<T>, T> =
+  S extends ComputedState<T>
+    ? ComputedState<T>
+    : S extends State<T>
+      ? ComputedState<T>
+      : NoEmitterEvent<T>;
 
 export interface PipeFn<T, S extends Pipeable<any>> {
   (): PipeResult<S, T>;

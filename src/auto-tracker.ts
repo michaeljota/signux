@@ -8,7 +8,9 @@ export const autoTrackCallback = (callback: EventEmitter<void>) => {
   trackerStack.pop();
 };
 
-export function subscribeAutoTracker(subscribe: (listener: () => void) => void) {
+export function subscribeAutoTracker(
+  subscribe: (listener: () => void) => void,
+) {
   const tracker = trackerStack.at(-1);
   tracker && subscribe(tracker);
 }

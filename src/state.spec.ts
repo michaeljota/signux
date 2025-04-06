@@ -10,7 +10,9 @@ describe("state", () => {
 
   it("should update state when an event is triggered", () => {
     const updateEvent = event<string>();
-    const myState = state("initial").on(updateEvent, (_, newValue) => newValue).create();
+    const myState = state("initial")
+      .on(updateEvent, (_, newValue) => newValue)
+      .create();
     updateEvent("updated");
     expect(myState()).toBe("updated");
   });
@@ -18,7 +20,9 @@ describe("state", () => {
   it("should not update state when an event that was not added is triggered", () => {
     const updateEvent = event<string>();
     const resetState = event();
-    const myState = state("initial").on(updateEvent, (_, newValue) => newValue).create();
+    const myState = state("initial")
+      .on(updateEvent, (_, newValue) => newValue)
+      .create();
     const reseteableState = myState.on(resetState, () => "initial").create();
     updateEvent("updated");
     expect(myState()).toBe("updated");
@@ -30,7 +34,9 @@ describe("state", () => {
 
   it("should notify listeners the state has been updated", () => {
     const updateEvent = event<string>();
-    const myState = state("initial").on(updateEvent, (_, newValue) => newValue).create();
+    const myState = state("initial")
+      .on(updateEvent, (_, newValue) => newValue)
+      .create();
     const mockListener = mock();
     myState.subscribe(mockListener);
     updateEvent("updated");
@@ -40,7 +46,9 @@ describe("state", () => {
 
   it("should pipe ", () => {
     const updateEvent = event<string>();
-    const myState = state("initial").on(updateEvent, (_, newValue) => newValue).create();
+    const myState = state("initial")
+      .on(updateEvent, (_, newValue) => newValue)
+      .create();
     const pipeResult = myState.pipe();
     updateEvent("test");
 

@@ -15,11 +15,19 @@ describe("mapAsync", () => {
     asyncStream.subscribe(callback);
 
     source(5);
-    expect(callback).toHaveBeenCalledWith({ data: null, loading: true, error: null });
+    expect(callback).toHaveBeenCalledWith({
+      data: null,
+      loading: true,
+      error: null,
+    });
 
     await new Promise((resolve) => setTimeout(resolve, 60));
 
-    expect(callback).toHaveBeenCalledWith({ data: 10, loading: false, error: null });
+    expect(callback).toHaveBeenCalledWith({
+      data: 10,
+      loading: false,
+      error: null,
+    });
   });
 
   it("should emit loading state then error state when promise rejects", async () => {
@@ -35,11 +43,19 @@ describe("mapAsync", () => {
     asyncStream.subscribe(callback);
 
     source(5);
-    expect(callback).toHaveBeenCalledWith({ data: null, loading: true, error: null });
+    expect(callback).toHaveBeenCalledWith({
+      data: null,
+      loading: true,
+      error: null,
+    });
 
     await new Promise((resolve) => setTimeout(resolve, 60));
 
-    expect(callback).toHaveBeenCalledWith({ data: null, loading: false, error: err });
+    expect(callback).toHaveBeenCalledWith({
+      data: null,
+      loading: false,
+      error: err,
+    });
   });
 
   it("should cancel previous promise if a new one is fired", async () => {
@@ -61,13 +77,25 @@ describe("mapAsync", () => {
     asyncStream.subscribe(callback);
 
     source(1);
-    expect(callback).toHaveBeenCalledWith({ data: null, loading: true, error: null });
+    expect(callback).toHaveBeenCalledWith({
+      data: null,
+      loading: true,
+      error: null,
+    });
     source(2);
-    expect(callback).toHaveBeenCalledWith({ data: null, loading: true, error: null });
+    expect(callback).toHaveBeenCalledWith({
+      data: null,
+      loading: true,
+      error: null,
+    });
 
     resolveFirst!(10);
 
     await new Promise((resolve) => setTimeout(resolve, 10));
-    expect(callback).toHaveBeenCalledWith({ data: 4, loading: false, error: null });
+    expect(callback).toHaveBeenCalledWith({
+      data: 4,
+      loading: false,
+      error: null,
+    });
   });
 });

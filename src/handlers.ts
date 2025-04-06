@@ -1,6 +1,11 @@
 import { subscribeAutoTracker } from "./auto-tracker";
 import { event, type Event } from "./event";
-import type { Subscribable, EventEmitter, StateGetter, PipeOperatorsDefault } from "./types";
+import type {
+  Subscribable,
+  EventEmitter,
+  StateGetter,
+  PipeOperatorsDefault,
+} from "./types";
 
 interface ListenersHandler<T> extends Subscribable<T> {
   emit: EventEmitter<T>;
