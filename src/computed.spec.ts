@@ -14,8 +14,8 @@ describe("computed", () => {
   it("should update computed state when dependencies change", () => {
     const updateName = event<string>();
     const updateLastName = event<string>();
-    const firstName = state("John").on(updateName, (_, name) => name);
-    const lastName = state("Doe").on(updateLastName, (_, name) => name);
+    const firstName = state("John").on(updateName, (_, name) => name).create();
+    const lastName = state("Doe").on(updateLastName, (_, name) => name).create();
     const fullName = computed(() => `${firstName()} ${lastName()}`);
 
     updateName("Jane");

@@ -6,7 +6,7 @@ import { effect } from "./effect";
 describe("effect", () => {
   it("should react to state changes", () => {
     const updateState = event<string>();
-    const myState = state("initial").on(updateState, (_, state) => state);
+    const myState = state("initial").on(updateState, (_, state) => state).create();
     const tester = mock();
 
     effect(() => {

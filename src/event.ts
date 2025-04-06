@@ -23,7 +23,7 @@ export function event<T = void>(): Event<T> {
   const { emit, subscribe } = createListenersHandler<T>();
 
   const toState = (initialValue?: T) =>
-    state(initialValue).on({ subscribe }, (_, v) => v);
+    state(initialValue).on({ subscribe }, (_, v) => v).create();
 
   function pipe<R>(...operators: PipeOperatorsDefault): Event<R> {
     return getResultEvent<T, R>(subscribe, operators);

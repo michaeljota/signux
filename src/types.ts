@@ -9,7 +9,7 @@ export interface Subscribable<T> {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type PipeOperatorsDefault = Array<OperatorFn<any, any>>;
-export type PipeResult<T, S extends Pipeable<T>> = S extends ComputedState<T>
+export type PipeResult<S extends Pipeable<T>, T> = S extends ComputedState<T>
   ? ComputedState<T>
   : S extends State<T>
   ? ComputedState<T>
@@ -17,49 +17,46 @@ export type PipeResult<T, S extends Pipeable<T>> = S extends ComputedState<T>
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface PipeFn<T, S extends Pipeable<any>> {
-  (): PipeResult<T, S>;
-  <A>(op1: OperatorFn<NonNullable<T>, A>): PipeResult<A, S>;
-  <A, B>(op1: OperatorFn<NonNullable<T>, A>, op2: OperatorFn<A, B>): PipeResult<
-    B,
-    S
-  >;
+  (): PipeResult<S, T>;
+  <A>(op1: OperatorFn<T, A>): PipeResult<S, A>;
+  <A, B>(op1: OperatorFn<T, A>, op2: OperatorFn<A, B>): PipeResult<S, B>;
   <A, B, C>(
-    op1: OperatorFn<NonNullable<T>, A>,
+    op1: OperatorFn<T, A>,
     op2: OperatorFn<A, B>,
     op3: OperatorFn<B, C>,
-  ): PipeResult<C, S>;
+  ): PipeResult<S, C>;
   <A, B, C, D>(
-    op1: OperatorFn<NonNullable<T>, A>,
+    op1: OperatorFn<T, A>,
     op2: OperatorFn<A, B>,
     op3: OperatorFn<B, C>,
     op4: OperatorFn<C, D>,
-  ): PipeResult<D, S>;
+  ): PipeResult<S, D>;
   <A, B, C, D, E>(
-    op1: OperatorFn<NonNullable<T>, A>,
+    op1: OperatorFn<T, A>,
     op2: OperatorFn<A, B>,
     op3: OperatorFn<B, C>,
     op4: OperatorFn<C, D>,
     op5: OperatorFn<D, E>,
-  ): PipeResult<E, S>;
+  ): PipeResult<S, E>;
   <A, B, C, D, E, F>(
-    op1: OperatorFn<NonNullable<T>, A>,
+    op1: OperatorFn<T, A>,
     op2: OperatorFn<A, B>,
     op3: OperatorFn<B, C>,
     op4: OperatorFn<C, D>,
     op5: OperatorFn<D, E>,
     op6: OperatorFn<E, F>,
-  ): PipeResult<F, S>;
+  ): PipeResult<S, F>;
   <A, B, C, D, E, F, G>(
-    op1: OperatorFn<NonNullable<T>, A>,
+    op1: OperatorFn<T, A>,
     op2: OperatorFn<A, B>,
     op3: OperatorFn<B, C>,
     op4: OperatorFn<C, D>,
     op5: OperatorFn<D, E>,
     op6: OperatorFn<E, F>,
     op7: OperatorFn<F, G>,
-  ): PipeResult<G, S>;
+  ): PipeResult<S, G>;
   <A, B, C, D, E, F, G, H>(
-    op1: OperatorFn<NonNullable<T>, A>,
+    op1: OperatorFn<T, A>,
     op2: OperatorFn<A, B>,
     op3: OperatorFn<B, C>,
     op4: OperatorFn<C, D>,
@@ -67,9 +64,9 @@ export interface PipeFn<T, S extends Pipeable<any>> {
     op6: OperatorFn<E, F>,
     op7: OperatorFn<F, G>,
     op8: OperatorFn<G, H>,
-  ): PipeResult<H, S>;
+  ): PipeResult<S, H>;
   <A, B, C, D, E, F, G, H, I>(
-    op1: OperatorFn<NonNullable<T>, A>,
+    op1: OperatorFn<T, A>,
     op2: OperatorFn<A, B>,
     op3: OperatorFn<B, C>,
     op4: OperatorFn<C, D>,
@@ -78,9 +75,9 @@ export interface PipeFn<T, S extends Pipeable<any>> {
     op7: OperatorFn<F, G>,
     op8: OperatorFn<G, H>,
     op9: OperatorFn<H, I>,
-  ): PipeResult<I, S>;
+  ): PipeResult<S, I>;
   <A, B, C, D, E, F, G, H, I, J>(
-    op1: OperatorFn<NonNullable<T>, A>,
+    op1: OperatorFn<T, A>,
     op2: OperatorFn<A, B>,
     op3: OperatorFn<B, C>,
     op4: OperatorFn<C, D>,
@@ -90,9 +87,9 @@ export interface PipeFn<T, S extends Pipeable<any>> {
     op8: OperatorFn<G, H>,
     op9: OperatorFn<H, I>,
     op10: OperatorFn<I, J>,
-  ): PipeResult<J, S>;
+  ): PipeResult<S, J>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  <R>(...ops: OperatorFn<any, any>[]): PipeResult<R, S>;
+  <R>(...ops: OperatorFn<any, any>[]): PipeResult<S, R>;
 }
 
 export interface Pipeable<T> {
