@@ -7,7 +7,6 @@ export interface Subscribable<T> {
   subscribe(this: void, listener: EventEmitter<T>): void;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type PipeOperatorsDefault = Array<OperatorFn<any, any>>;
 export type PipeResult<S extends Pipeable<T>, T> = S extends ComputedState<T>
   ? ComputedState<T>
@@ -15,7 +14,6 @@ export type PipeResult<S extends Pipeable<T>, T> = S extends ComputedState<T>
   ? ComputedState<T>
   : NoEmitterEvent<T>;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface PipeFn<T, S extends Pipeable<any>> {
   (): PipeResult<S, T>;
   <A>(op1: OperatorFn<T, A>): PipeResult<S, A>;
@@ -88,7 +86,6 @@ export interface PipeFn<T, S extends Pipeable<any>> {
     op9: OperatorFn<H, I>,
     op10: OperatorFn<I, J>,
   ): PipeResult<S, J>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   <R>(...ops: OperatorFn<any, any>[]): PipeResult<S, R>;
 }
 
