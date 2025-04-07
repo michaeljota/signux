@@ -8,7 +8,10 @@
     "@types/bun": "latest",
     "eslint": "^9.24.0",
     "globals": "^16.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
     "prettier": "3.5.3",
+    "rimraf": "^6.0.1",
     "typescript-eslint": "^8.29.0"
   },
   "peerDependencies": {
@@ -30,9 +33,15 @@
     }
   },
   "scripts": {
-    "build": "bun ./scripts/build.ts && tsc --declaration --emitDeclarationOnly --noEmit false --outDir dist",
+    "prebuild": "bun x rimraf ./dist",
+    "build": "bun ./scripts/build.ts && tsc",
     "prepublishOnly": "bun run build",
     "lint": "eslint .",
-    "ts:check": "tsc"
+    "ts:check": "tsc --noEmit",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,ts}": "eslint --cache --fix",
+    "*.{js,ts,css,md}": "prettier --write"
   }
 }
