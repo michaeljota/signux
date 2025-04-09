@@ -1,8 +1,10 @@
 {
-  "name": "signux",
-  "version": "1.0.0",
-  "module": "index.ts",
+  "name": "signux-monorepo",
+  "private": true,
   "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
     "@eslint/js": "^9.24.0",
     "@types/bun": "latest",
@@ -11,33 +13,10 @@
     "husky": "^9.1.7",
     "lint-staged": "^15.5.0",
     "prettier": "3.5.3",
-    "rimraf": "^6.0.1",
+    "typescript": "5.8.3",
     "typescript-eslint": "^8.29.0"
   },
-  "peerDependencies": {
-    "typescript": "^5"
-  },
-  "files": [
-    "dist"
-  ],
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./operators": {
-      "import": "./dist/operators/index.js",
-      "types": "./dist/operators/index.d.ts"
-    }
-  },
   "scripts": {
-    "prebuild": "bun x rimraf ./dist",
-    "build": "bun ./scripts/build.ts && tsc",
-    "prepublishOnly": "bun run build",
-    "lint": "eslint .",
-    "ts:check": "tsc --noEmit",
     "prepare": "husky"
   },
   "lint-staged": {

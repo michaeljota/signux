@@ -1,2 +1,2 @@
-bun run ts:check
+bunx tsc --noEmit
 bunx lint-staged
