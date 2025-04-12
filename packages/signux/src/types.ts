@@ -3,18 +3,77 @@ import type { NoEmitterEvent } from "./event";
 import type { OperatorFn } from "./operators/types";
 import type { State } from "./state";
 
+/**
+ * Represents any reactive source that supports subscriptions.
+ *
+ * @template T The type of values emitted by the source.
+ */
 export interface Subscribable<T> {
   subscribe(this: void, listener: EventEmitter<T>): void;
 }
 
+/**
+ * A function that emits a value to all current subscribers.
+ *
+ * @template T The type of the payload being emitted.
+ */
+export interface EventEmitter<T> {
+  (payload: T): void;
+}
+
+/**
+ * A function that returns the current value of a reactive state.
+ *
+ * Used by `State` and `ComputedState` to expose their current value.
+ *
+ * @template T The type of the stored value.
+ */
+export interface StateGetter<T> {
+  (): T;
+}
+
+/**
+ * Marks a reactive primitive as pipeable.
+ *
+ * Provides a `.pipe(...)` method for composing reactive operators.
+ *
+ * @template T The value type emitted by the source.
+ */
+export interface Pipeable<T> {
+  pipe: PipeFn<T, this>;
+}
+
+/**
+ * A list of operators to apply in a reactive `pipe(...)` chain.
+ */
 export type PipeOperatorsDefault = Array<OperatorFn<any, any>>;
-export type PipeResult<S extends Pipeable<T>, T> =
+
+/**
+ * @internal
+ * Determines the type returned by calling `.pipe(...)` on a given source.
+ *
+ * - If piped from a `State` or `ComputedState`, the result is a `ComputedState`.
+ * - Otherwise, the result is a `NoEmitterEvent`.
+ *
+ * @template S The source type.
+ * @template T The value type of the source.
+ */
+type PipeResult<S extends Pipeable<T>, T> =
   S extends ComputedState<T>
     ? ComputedState<T>
     : S extends State<T>
       ? ComputedState<T>
       : NoEmitterEvent<T>;
 
+/**
+ * Represents the `.pipe(...)` method used to chain reactive operators.
+ *
+ * Supports 0–10 explicitly typed operators for strong inference,
+ * then falls back to a variadic version.
+ *
+ * @template T The initial input value type.
+ * @template S The type of the source implementing `Pipeable<T>`.
+ */
 export interface PipeFn<T, S extends Pipeable<any>> {
   (): PipeResult<S, T>;
   <A>(op1: OperatorFn<T, A>): PipeResult<S, A>;
@@ -88,16 +147,4 @@ export interface PipeFn<T, S extends Pipeable<any>> {
     op10: OperatorFn<I, J>,
   ): PipeResult<S, J>;
   <R>(...ops: OperatorFn<any, any>[]): PipeResult<S, R>;
-}
-
-export interface Pipeable<T> {
-  pipe: PipeFn<T, this>;
-}
-
-export interface EventEmitter<T> {
-  (payload: T): void;
-}
-
-export interface StateGetter<T> {
-  (): T;
 }
