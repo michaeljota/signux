@@ -25,7 +25,7 @@ export function stateAsync<T, P = void>(
   let fetchID = 0;
 
   fetchEvent.subscribe(async (params) => {
-    const currentFetchID = fetchID++;
+    const currentFetchID = ++fetchID;
     set(loadingState());
 
     try {
