@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[903],{1912:s=>{s.exports=JSON.parse('{"blogBasePath":"/signux/blog","blogTitle":"Blog","authorsListPath":"/signux/blog/authors"}')}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[435],{8026:e=>{e.exports=JSON.parse('{"authors":[{"name":"Michael De Abreu","title":"Software Engineer","url":"https://github.com/michaeljota","page":{"permalink":"/signux/blog/authors/michaeljota"},"imageURL":"https://github.com/michaeljota.png","key":"michaeljota","count":0}]}')}}]);
