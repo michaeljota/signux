@@ -1,2 +1,2 @@
-bunx tsc --noEmit
+bun --filter '*' ts:check
 bunx lint-staged

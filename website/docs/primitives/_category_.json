@@ -1,0 +1,8 @@
+{
+  "label": "Primitives",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Core reactive primitives like state, event, computed and others. These are the foundation of everything in Signux."
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "label": "Operators",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Pure functions that allows you to create new reactive flows by composing operators in a functional, readable way."
+  }
+}
