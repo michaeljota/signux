@@ -16,9 +16,9 @@ describe("mapAsync", () => {
 
     source(5);
     expect(callback).toHaveBeenCalledWith({
-      data: null,
+      data: undefined,
       loading: true,
-      error: null,
+      error: undefined,
     });
 
     await new Promise((resolve) => setTimeout(resolve, 60));
@@ -26,7 +26,7 @@ describe("mapAsync", () => {
     expect(callback).toHaveBeenCalledWith({
       data: 10,
       loading: false,
-      error: null,
+      error: undefined,
     });
   });
 
@@ -44,15 +44,15 @@ describe("mapAsync", () => {
 
     source(5);
     expect(callback).toHaveBeenCalledWith({
-      data: null,
+      data: undefined,
       loading: true,
-      error: null,
+      error: undefined,
     });
 
     await new Promise((resolve) => setTimeout(resolve, 60));
 
     expect(callback).toHaveBeenCalledWith({
-      data: null,
+      data: undefined,
       loading: false,
       error: err,
     });
@@ -78,15 +78,15 @@ describe("mapAsync", () => {
 
     source(1);
     expect(callback).toHaveBeenCalledWith({
-      data: null,
+      data: undefined,
       loading: true,
-      error: null,
+      error: undefined,
     });
     source(2);
     expect(callback).toHaveBeenCalledWith({
-      data: null,
+      data: undefined,
       loading: true,
-      error: null,
+      error: undefined,
     });
 
     resolveFirst!(10);
@@ -95,7 +95,7 @@ describe("mapAsync", () => {
     expect(callback).toHaveBeenCalledWith({
       data: 4,
       loading: false,
-      error: null,
+      error: undefined,
     });
   });
 });
