@@ -13,3 +13,5 @@ import type { Subscribable } from "../types";
  * @template R The type of values emitted by the resulting event (defaults to `T`).
  */
 export type OperatorFn<T, R = T> = (source: Subscribable<T>) => Event<R>;
+
+export type ThrottleMode = "lead" | "trail";
