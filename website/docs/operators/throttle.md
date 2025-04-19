@@ -1,5 +1,7 @@
 # throttle
 
+> Added in **v1.1.0**
+
 The `throttle` operator limits how frequently values are emitted by introducing a delay window.  
 It can emit either the **first** or **last** value in each window, depending on the mode.
 
